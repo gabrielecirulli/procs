@@ -1,0 +1,11 @@
+{
+  "name": "procs",
+  "version": "0.0.1",
+  "description": "A toy to look at running processes in a fun way",
+  "main": "index.js",
+  "author": "Gabriele Cirulli",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+
+  }
+}
