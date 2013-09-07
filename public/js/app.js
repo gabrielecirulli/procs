@@ -1,1 +1,1 @@
-console.log("lol");
+var socket=io.connect();socket.on("processes",function(o){console.log(o.list[0])});

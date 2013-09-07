@@ -15,8 +15,8 @@ var io = socket.listen(server);
 
 // Static
 app.use(uglify.middleware({
-  src:  __dirname + "/assets",
-  dest: __dirname + "/public"
+  src:  __dirname + "/assets/js/",
+  dest: __dirname + "/public/js/app.js"
 }));
 app.use(express.static(__dirname + "/public"));
 
