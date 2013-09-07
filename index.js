@@ -5,7 +5,7 @@ var socket = require("socket.io");
 var ejs = require('ejs-locals');
 
 // Local modules
-var processes = require("./lib/processes");
+var Manager = require("./lib/socket_manager");
 var uglify = require("./lib/uglify-middleware");
 
 // App
@@ -28,9 +28,12 @@ app.get("/", function (req, res) {
   res.render("index");
 });
 
+// Socket
+var manager = new Manager(io);
+
+// Listen
 var host = process.env.HOST || "localhost";
 var port = process.env.PORT || 4000;
 
-server.listen(port, host, function () {
-  console.log("Listening on " + host + ":" + port);
-});
+server.listen(port, host);
+console.log("Listening on " + host + ":" + port);
