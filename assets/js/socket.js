@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function sizeFromMem(mem) {
-    return Math.pow(log10(mem), 3) / 15 + 2;
+    return Math.pow(1.1, Math.pow(log10(mem), 3) / 15) + 3;
   }
 });
 
