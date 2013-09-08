@@ -20,11 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var orphans = oldPids.filter(function(pid) { return newPids.indexOf(pid) === -1 });
 
-
     newPids.forEach(function (pid) {
-      // var orphanIndex = orphans.indexOf[pid];
-      // if (orphanIndex !== -1) orphans.pop(orphanIndex);
-
       if (oldPids.indexOf(pid) === -1) { // If there's a process that wasn't there before
         // Add the new process
         processes[pid] = list[pid];
@@ -36,6 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
           processes[pid].mem = list[pid].mem;
           procs.view.adjustBallRadius(processes[pid].ball, sizeFromMem(processes[pid].mem));
         }
+
+        // Apply force corresponding to the cpu percent
+        processes[pid].cpu = list[pid].cpu;
+        procs.view.applyForce(processes[pid].ball, processes[pid].cpu);
       }
     });
 

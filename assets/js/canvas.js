@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var debugDraw = new b2DebugDraw;
     debugDraw.SetSprite(this.ctx);
     debugDraw.SetDrawScale(this.scale);
-    debugDraw.SetFillAlpha(0.3);
+    debugDraw.SetFillAlpha(0.5);
     debugDraw.SetLineThickness(2.0);
     debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
     this.world.SetDebugDraw(debugDraw);
@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
           || position.x < -this.boundaryThreshold / this.scale
           || position.y > (this.canvas.height + this.boundaryThreshold) / this.scale
           || position.y < -this.boundaryThreshold / this.scale) {
+        console.log("Reset");
         body.SetPosition(new b2Vec2(this.canvas.width / 2 / this.scale, 0));
         // this.world.DestroyBody(body);
       }
@@ -99,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var fixtureDefinition = new b2FixtureDef;
     fixtureDefinition.density = 1.0;
     fixtureDefinition.friction = 0.5;
-    fixtureDefinition.restitution = 0.2;
+    fixtureDefinition.restitution = 0.6;
 
     return fixtureDefinition;
   };
@@ -142,6 +143,10 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
       self.world.DestroyBody(self.toDelete.shift());
     }, 10000);
+  };
+
+  BoxManager.prototype.applyForce = function (ball, strength) {
+    ball.ApplyImpulse(new b2Vec2((Math.random() - .5) * strength, -(strength) / 2), ball.GetWorldCenter());
   };
 
   BoxManager.prototype.wallShape = function (width, height) {
@@ -212,4 +217,5 @@ document.addEventListener("DOMContentLoaded", function () {
   procs.view.addBall = manager.addBall.bind(manager);
   procs.view.adjustBallRadius = manager.adjustBallRadius.bind(manager);
   procs.view.removeBall = manager.removeBall.bind(manager);
+  procs.view.applyForce = manager.applyForce.bind(manager);
 });
