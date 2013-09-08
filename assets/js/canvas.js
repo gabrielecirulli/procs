@@ -79,9 +79,15 @@ document.addEventListener("DOMContentLoaded", function () {
           || position.x < -this.boundaryThreshold / this.scale
           || position.y > (this.canvas.height + this.boundaryThreshold) / this.scale
           || position.y < -this.boundaryThreshold / this.scale) {
-        console.log("Reset");
-        body.SetPosition(new b2Vec2(this.canvas.width / 2 / this.scale, 0));
-        // this.world.DestroyBody(body);
+        var bodyIndex = this.toDelete.indexOf(body);
+        if (bodyIndex !== -1) {
+          console.log("Delete");
+          this.world.DestroyBody(body);
+          this.toDelete.splice(bodyIndex, 1);
+        } else {
+          console.log("Reset");
+          body.SetPosition(new b2Vec2(this.canvas.width / 2 / this.scale, 0));
+        }
       }
       body = body.GetNext();
     }
@@ -140,9 +146,9 @@ document.addEventListener("DOMContentLoaded", function () {
   BoxManager.prototype.removeBall = function (ball) {
     var self = this;
     this.toDelete.push(ball);
-    setTimeout(function () {
-      self.world.DestroyBody(self.toDelete.shift());
-    }, 10000);
+    // setTimeout(function () {
+    //   self.world.DestroyBody(self.toDelete.shift());
+    // }, 10000);
   };
 
   BoxManager.prototype.applyForce = function (ball, strength) {
