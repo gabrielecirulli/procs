@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
   BoxManager.prototype.update = function () {
     // Apply a force to bodies that need to be deleted
     this.toDelete.forEach(function (body) {
-      body.ApplyForce(new b2Vec2(0, -20), body.GetWorldCenter());
+      body.ApplyForce(new b2Vec2(0, -1), body.GetWorldCenter());
     });
 
     // Perform simulation step and draw
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
   BoxManager.prototype.defaultFixture = function () {
     var fixtureDefinition = new b2FixtureDef;
     fixtureDefinition.density = 1.0;
-    fixtureDefinition.friction = 0.5;
+    fixtureDefinition.friction = 0.1;
     fixtureDefinition.restitution = 0.6;
 
     return fixtureDefinition;
@@ -146,9 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
   BoxManager.prototype.removeBall = function (ball) {
     var self = this;
     this.toDelete.push(ball);
-    // setTimeout(function () {
-    //   self.world.DestroyBody(self.toDelete.shift());
-    // }, 10000);
   };
 
   BoxManager.prototype.applyForce = function (ball, strength) {
