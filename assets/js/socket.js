@@ -28,20 +28,17 @@ document.addEventListener("DOMContentLoaded", function () {
       if (oldPids.indexOf(pid) === -1) { // If there's a process that wasn't there before
         // Add the new process
         processes[pid] = list[pid];
-        // console.log(pid);
         processes[pid].ball = procs.view.addBall(sizeFromMem(processes[pid].mem));
       } else {
         // Check if the memory has changed
         var diff = Math.abs(processes[pid].mem - list[pid].mem);
         if(diff > 50000) {
-          // console.log(diff);
           processes[pid].mem = list[pid].mem;
           procs.view.adjustBallRadius(processes[pid].ball, sizeFromMem(processes[pid].mem));
         }
       }
     });
 
-    // console.log(orphans);
     orphans.forEach(function (pid) {
       procs.view.removeBall(processes[pid].ball);
       delete processes[pid];

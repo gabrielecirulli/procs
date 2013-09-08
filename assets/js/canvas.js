@@ -79,7 +79,6 @@ document.addEventListener("DOMContentLoaded", function () {
           || position.x < -this.boundaryThreshold / this.scale
           || position.y > (this.canvas.height + this.boundaryThreshold) / this.scale
           || position.y < -this.boundaryThreshold / this.scale) {
-        // console.log("FUCK");
         body.SetPosition(new b2Vec2(this.canvas.width / 2 / this.scale, 0));
         // this.world.DestroyBody(body);
       }
@@ -140,7 +139,6 @@ document.addEventListener("DOMContentLoaded", function () {
   BoxManager.prototype.removeBall = function (ball) {
     var self = this;
     this.toDelete.push(ball);
-    // console.log("Pushed")
     setTimeout(function () {
       self.world.DestroyBody(self.toDelete.shift());
     }, 10000);
