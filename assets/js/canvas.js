@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   BoxManager.prototype.applyForce = function (ball, strength) {
-    ball.ApplyImpulse(new b2Vec2((Math.random() - .5) * strength, -(strength) / 2), ball.GetWorldCenter());
+    // ball.ApplyImpulse(new b2Vec2((Math.random() - .5) * strength, (-(strength) / 2) * Math.random()), ball.GetWorldCenter());
   };
 
   BoxManager.prototype.wallShape = function (width, height) {

@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         // Check if the memory has changed
         var diff = Math.abs(processes[pid].mem - list[pid].mem);
-        if(diff > 50000) {
+        if(diff / 1024 > 100) {
           processes[pid].mem = list[pid].mem;
           procs.view.adjustBallRadius(processes[pid].ball, sizeFromMem(processes[pid].mem));
         }
