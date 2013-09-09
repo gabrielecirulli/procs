@@ -3,7 +3,7 @@ A little toy that shows the currently running processes as little balls on a can
 
 It uses Box2D for the physics and Socket.IO to pass the process data to the pages.
 
-[picture](http://pictures.gabrielecirulli.com/Procs-20130909-151908.png)
+![picture](http://pictures.gabrielecirulli.com/Procs-20130909-151908.png)
 
 ## What it does
 When you open the page you'll see a bunch of balls falling down from the top. Each one of the balls represents a process. Its radius is linked to the amount of memory the app requires to run. Their size can change if the corresponding process allocates more memory (it's very apparent if you, for example, try loading many files at the same time in Photoshop). Some of the balls have a tendency to jump around. If they do, it means the corresponding process is using a big enough slice of CPU.
